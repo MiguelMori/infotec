@@ -1,0 +1,50 @@
+{% extends 'twitter/layout.html' %}
+{% block content %}
+
+<body class="login-page">
+    <div class="twitter-login-box">
+        <header>
+            <img src="https://pbs.twimg.com/profile_images/1169024353008259072/LNUBVJAL_400x400.jpg" alt="twitter logo">
+            <h1>Registrate en InfoTec</h1>
+        </header>
+
+        <form method="post">
+            {% csrf_token %}
+            <div class="input-wrapper">
+                <label for="user-name-id">Nombre completo</label>
+                {{ form.first_name }}
+            </div>
+            <div class="input-wrapper">
+                <label for="user-name-id">Nombre de usuario</label>
+                {{ form.username }}
+            </div>
+            <div class="input-wrapper">
+                <label for="user-name-id">Email</label>
+                {{ form.email }}
+            </div>
+
+            <div class="input-wrapper">
+                <label for="password-id">Contraseña</label>
+                {{ form.password1 }}
+            </div>
+            {% if form.errors %}
+            <p class="text-danger">Su contraseña no puede asemejarse tanto a su otra información personal.</p>
+            <p class="text-danger">Su contraseña debe contener al menos 8 caracteres.</p>
+            <p class="text-danger">Su contraseña no puede ser una clave utilizada comúnmente.</p>
+            <p class="text-danger">Su contraseña no puede ser completamente numérica.</p>
+            {% endif %}
+            <div class="input-wrapper">
+                <label for="password-id">Confirme su contraseña</label>
+                {{ form.password2 }}
+            </div>
+
+            <button class="twitter-btn">Registrarse</button>
+        </form>
+
+        <div class="footer">
+            <a href="{% url 'home' %}">¿Ya tienes una cuenta? Login</a>
+        </div>
+
+    </div>
+
+    {% endblock content %}
